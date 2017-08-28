@@ -61,7 +61,6 @@ class ViewController: UIViewController {
                 let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject]{
                 if let result = json?["orders"] as? [[String: Any]] {
                     for output in result {
-                        print(output)
                         let order = Order()
                         if let customer = output["customer"] as? [String: Any] {
                             order.first_name = customer["first_name"] as? String
