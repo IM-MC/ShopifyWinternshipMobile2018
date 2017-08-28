@@ -33,8 +33,7 @@ class ViewController: UIViewController {
         amountSpentLabel.text = "$" + total_spent
         
     }
-    
-    
+
     @IBAction func refreshButtonBronzeBags(_ sender: Any) {
         bronzeBagCount = 0
         
@@ -47,16 +46,16 @@ class ViewController: UIViewController {
             }
         }
     }
-    
+
     private func reloadOrderData() {
         let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
-            
+
             self.itemArray = []
             
             if error != nil {
                 print(error?.localizedDescription ?? "")
             }
-            
+
             if let data = data,
                 let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject]{
                 if let result = json?["orders"] as? [[String: Any]] {
@@ -83,13 +82,13 @@ class ViewController: UIViewController {
         }
         task.resume()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         reloadOrderData()
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
