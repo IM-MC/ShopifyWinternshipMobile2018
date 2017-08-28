@@ -1,0 +1,343 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9636FF6B1F5250CF006550CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9636FF6A1F5250CF006550CB /* AppDelegate.swift */; };
+		9636FF6D1F5250CF006550CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9636FF6C1F5250CF006550CB /* ViewController.swift */; };
+		9636FF701F5250CF006550CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9636FF6E1F5250CF006550CB /* Main.storyboard */; };
+		9636FF721F5250CF006550CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9636FF711F5250CF006550CB /* Assets.xcassets */; };
+		9636FF751F5250CF006550CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9636FF731F5250CF006550CB /* LaunchScreen.storyboard */; };
+		9636FF7D1F526A44006550CB /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9636FF7C1F526A44006550CB /* Order.swift */; };
+		9636FF811F52F541006550CB /* Rectangle 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9636FF801F52F541006550CB /* Rectangle 2.png */; };
+		9636FF821F52F945006550CB /* Pacifico.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9636FF7F1F5293FC006550CB /* Pacifico.ttf */; };
+		9636FF851F52FA3F006550CB /* SF-Pro-Display-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9636FF831F52FA37006550CB /* SF-Pro-Display-Ultralight.otf */; };
+		9636FF881F52FAB4006550CB /* SF-Pro-Display-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9636FF871F52FAA5006550CB /* SF-Pro-Display-Light.otf */; };
+		9636FF8A1F531A4B006550CB /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9636FF891F531A4B006550CB /* Button.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		9636FF671F5250CF006550CB /* ShopifyWinternshipMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShopifyWinternshipMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9636FF6A1F5250CF006550CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9636FF6C1F5250CF006550CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9636FF6F1F5250CF006550CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9636FF711F5250CF006550CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9636FF741F5250CF006550CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9636FF761F5250CF006550CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9636FF7C1F526A44006550CB /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		9636FF7F1F5293FC006550CB /* Pacifico.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pacifico.ttf; sourceTree = "<group>"; };
+		9636FF801F52F541006550CB /* Rectangle 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rectangle 2.png"; sourceTree = "<group>"; };
+		9636FF831F52FA37006550CB /* SF-Pro-Display-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Ultralight.otf"; sourceTree = "<group>"; };
+		9636FF871F52FAA5006550CB /* SF-Pro-Display-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Light.otf"; sourceTree = "<group>"; };
+		9636FF891F531A4B006550CB /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9636FF641F5250CF006550CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9636FF5E1F5250CF006550CB = {
+			isa = PBXGroup;
+			children = (
+				9636FF831F52FA37006550CB /* SF-Pro-Display-Ultralight.otf */,
+				9636FF871F52FAA5006550CB /* SF-Pro-Display-Light.otf */,
+				9636FF7F1F5293FC006550CB /* Pacifico.ttf */,
+				9636FF691F5250CF006550CB /* ShopifyWinternshipMobile */,
+				9636FF681F5250CF006550CB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9636FF681F5250CF006550CB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9636FF671F5250CF006550CB /* ShopifyWinternshipMobile.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9636FF691F5250CF006550CB /* ShopifyWinternshipMobile */ = {
+			isa = PBXGroup;
+			children = (
+				9636FF6A1F5250CF006550CB /* AppDelegate.swift */,
+				9636FF7E1F526A47006550CB /* Models */,
+				9636FF6C1F5250CF006550CB /* ViewController.swift */,
+				9636FF891F531A4B006550CB /* Button.swift */,
+				9636FF6E1F5250CF006550CB /* Main.storyboard */,
+				9636FF711F5250CF006550CB /* Assets.xcassets */,
+				9636FF801F52F541006550CB /* Rectangle 2.png */,
+				9636FF731F5250CF006550CB /* LaunchScreen.storyboard */,
+				9636FF761F5250CF006550CB /* Info.plist */,
+			);
+			path = ShopifyWinternshipMobile;
+			sourceTree = "<group>";
+		};
+		9636FF7E1F526A47006550CB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9636FF7C1F526A44006550CB /* Order.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9636FF661F5250CF006550CB /* ShopifyWinternshipMobile */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9636FF791F5250CF006550CB /* Build configuration list for PBXNativeTarget "ShopifyWinternshipMobile" */;
+			buildPhases = (
+				9636FF631F5250CF006550CB /* Sources */,
+				9636FF641F5250CF006550CB /* Frameworks */,
+				9636FF651F5250CF006550CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShopifyWinternshipMobile;
+			productName = ShopifyWinternshipMobile;
+			productReference = 9636FF671F5250CF006550CB /* ShopifyWinternshipMobile.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9636FF5F1F5250CF006550CB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Matthew Chung";
+				TargetAttributes = {
+					9636FF661F5250CF006550CB = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = GCP95WEX98;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 9636FF621F5250CF006550CB /* Build configuration list for PBXProject "ShopifyWinternshipMobile" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9636FF5E1F5250CF006550CB;
+			productRefGroup = 9636FF681F5250CF006550CB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9636FF661F5250CF006550CB /* ShopifyWinternshipMobile */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9636FF651F5250CF006550CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9636FF881F52FAB4006550CB /* SF-Pro-Display-Light.otf in Resources */,
+				9636FF851F52FA3F006550CB /* SF-Pro-Display-Ultralight.otf in Resources */,
+				9636FF821F52F945006550CB /* Pacifico.ttf in Resources */,
+				9636FF751F5250CF006550CB /* LaunchScreen.storyboard in Resources */,
+				9636FF811F52F541006550CB /* Rectangle 2.png in Resources */,
+				9636FF721F5250CF006550CB /* Assets.xcassets in Resources */,
+				9636FF701F5250CF006550CB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9636FF631F5250CF006550CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9636FF7D1F526A44006550CB /* Order.swift in Sources */,
+				9636FF6D1F5250CF006550CB /* ViewController.swift in Sources */,
+				9636FF6B1F5250CF006550CB /* AppDelegate.swift in Sources */,
+				9636FF8A1F531A4B006550CB /* Button.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9636FF6E1F5250CF006550CB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9636FF6F1F5250CF006550CB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9636FF731F5250CF006550CB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9636FF741F5250CF006550CB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9636FF771F5250CF006550CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9636FF781F5250CF006550CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9636FF7A1F5250CF006550CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = GCP95WEX98;
+				INFOPLIST_FILE = ShopifyWinternshipMobile/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.MC.ShopifyWinternshipMobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		9636FF7B1F5250CF006550CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = GCP95WEX98;
+				INFOPLIST_FILE = ShopifyWinternshipMobile/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.MC.ShopifyWinternshipMobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9636FF621F5250CF006550CB /* Build configuration list for PBXProject "ShopifyWinternshipMobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9636FF771F5250CF006550CB /* Debug */,
+				9636FF781F5250CF006550CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9636FF791F5250CF006550CB /* Build configuration list for PBXNativeTarget "ShopifyWinternshipMobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9636FF7A1F5250CF006550CB /* Debug */,
+				9636FF7B1F5250CF006550CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9636FF5F1F5250CF006550CB /* Project object */;
+}
