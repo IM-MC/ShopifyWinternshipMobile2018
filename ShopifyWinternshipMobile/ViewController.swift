@@ -16,44 +16,60 @@ class ViewController: UIViewController {
     var itemArray: [String] = []
     
     var bronzeBagCount = 0
-    
+
+    let overlayVC = OverlayWithSpinner()
+
     @IBOutlet weak var amountSpentLabel: UILabel!
     @IBOutlet weak var bronzeBagAmountLabel: UILabel!
+    @IBOutlet weak var bronzeBagImage: UIImageView!
     
-    @IBAction func refreshButtonBatz(_ sender: Any) {
-        reloadOrderData()
+    @IBAction func refreshButton(_ sender: Any) {
+        overlayVC.modalTransitionStyle = .crossDissolve
+        overlayVC.modalPresentationStyle = .overCurrentContext
+        present(overlayVC, animated: true, completion: nil)
         
-        var total_spent: String = ""
-        
-        for order in orders {
-            if order.first_name == "Napoleon" && order.last_name == "Batz" {
-                total_spent = order.total_spent!
+        reloadOrderData { (response) in
+            
+            self.bronzeBagCount = 0
+            var total_spent: String = ""
+            
+            for item in self.itemArray {
+                if item == "Awesome Bronze Bag" {
+                    self.bronzeBagCount += 1
+                }
+            }
+            
+            for order in self.orders {
+                if order.first_name == "Napoleon" && order.last_name == "Batz" {
+                    total_spent = order.total_spent!
+                }
+            }
+            
+            DispatchQueue.main.async {
+                if response {
+                    self.amountSpentLabel.text = "$" + total_spent
+                    self.bronzeBagAmountLabel.text = String(self.bronzeBagCount)
+                }
             }
         }
-        amountSpentLabel.text = "$" + total_spent
+        overlayVC.dismiss(animated: true, completion: nil)
+
         
     }
-
-    @IBAction func refreshButtonBronzeBags(_ sender: Any) {
-        bronzeBagCount = 0
-        
-        reloadOrderData()
-        
-        for item in itemArray {
-            if item == "Awesome Bronze Bag" {
-                bronzeBagCount += 1
-                bronzeBagAmountLabel.text = String(bronzeBagCount)
-            }
-        }
-    }
-
-    private func reloadOrderData() {
+    
+    private func reloadOrderData(completionHandler: @escaping ((_ response: Bool)->Void)){
         let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
 
             self.itemArray = []
             
             if error != nil {
-                print(error?.localizedDescription ?? "")
+                let errorView = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                let okayButton = UIAlertAction(title: "Okay", style: .cancel, handler: { (_) in
+                    errorView.dismiss(animated: true, completion: nil)
+                })
+                errorView.addAction(okayButton)
+                self.show(errorView, sender: self)
+                completionHandler(false)
             }
 
             if let data = data,
@@ -74,6 +90,8 @@ class ViewController: UIViewController {
                                 }
                             }
                         }
+                        
+                        completionHandler(true)
 
                         self.orders.append(order)
                     }
@@ -86,7 +104,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        reloadOrderData()
+
     }
 
     override func didReceiveMemoryWarning() {

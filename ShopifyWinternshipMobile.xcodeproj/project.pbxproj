@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		961BA7E61F55C08C00806E65 /* OverlayWithSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961BA7E51F55C08C00806E65 /* OverlayWithSpinner.swift */; };
 		9636FF6B1F5250CF006550CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9636FF6A1F5250CF006550CB /* AppDelegate.swift */; };
 		9636FF6D1F5250CF006550CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9636FF6C1F5250CF006550CB /* ViewController.swift */; };
 		9636FF701F5250CF006550CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9636FF6E1F5250CF006550CB /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		961BA7E51F55C08C00806E65 /* OverlayWithSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayWithSpinner.swift; sourceTree = "<group>"; };
 		9636FF671F5250CF006550CB /* ShopifyWinternshipMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShopifyWinternshipMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9636FF6A1F5250CF006550CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9636FF6C1F5250CF006550CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +49,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		961BA7E41F55C06900806E65 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9636FF6C1F5250CF006550CB /* ViewController.swift */,
+				961BA7E51F55C08C00806E65 /* OverlayWithSpinner.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		9636FF5E1F5250CF006550CB = {
 			isa = PBXGroup;
 			children = (
@@ -71,7 +82,7 @@
 			children = (
 				9636FF6A1F5250CF006550CB /* AppDelegate.swift */,
 				9636FF7E1F526A47006550CB /* Models */,
-				9636FF6C1F5250CF006550CB /* ViewController.swift */,
+				961BA7E41F55C06900806E65 /* View Controllers */,
 				9636FF891F531A4B006550CB /* Button.swift */,
 				9636FF6E1F5250CF006550CB /* Main.storyboard */,
 				9636FF711F5250CF006550CB /* Assets.xcassets */,
@@ -171,6 +182,7 @@
 				9636FF6D1F5250CF006550CB /* ViewController.swift in Sources */,
 				9636FF6B1F5250CF006550CB /* AppDelegate.swift in Sources */,
 				9636FF8A1F531A4B006550CB /* Button.swift in Sources */,
+				961BA7E61F55C08C00806E65 /* OverlayWithSpinner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +348,7 @@
 				9636FF7B1F5250CF006550CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
