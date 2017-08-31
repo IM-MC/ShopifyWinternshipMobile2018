@@ -106,6 +106,10 @@ class ViewController: UIViewController {
                         self.bronzeBagImage.image = UIImage(named: "Image_Not_Available")
                     }
                 }
+            } else {
+                DispatchQueue.main.async {
+                    self.bronzeBagImage.image = UIImage(named: "Image_Not_Available")
+                }
             }
         }
 
