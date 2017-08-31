@@ -19,6 +19,9 @@ class ViewController: UIViewController {
     var bronzeBagCount = 0
     var itemImageSource: String = ""
     
+    // At the time of creation, $1 USD = $1.25 CAD
+    let USDtoCADConversionRate = 1.25
+    
     let overlayVC = OverlayWithSpinner()
     
     @IBOutlet weak var amountSpentLabel: UILabel!
@@ -69,7 +72,9 @@ class ViewController: UIViewController {
             
             for order in self.orders {
                 if order.first_name == "Napoleon" && order.last_name == "Batz" {
-                    total_spent = order.total_spent ?? "0"
+                    if let total_spent_double = Double(order.total_spent ?? "0") {
+                        total_spent = String(format: "%.2f", (total_spent_double * self.USDtoCADConversionRate))
+                    }
                 }
             }
             
