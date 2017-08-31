@@ -30,47 +30,8 @@ class ViewController: UIViewController {
         overlayVC.modalPresentationStyle = .overCurrentContext
         present(overlayVC, animated: true, completion: nil)
         
-        reloadOrderData { (response) in
-
-            self.bronzeBagCount = 0
-            var total_spent: String = ""
-            
-            for item in self.itemArray {
-                if item == "Awesome Bronze Bag" {
-                    self.bronzeBagCount += 1
-                }
-            }
-            
-            for order in self.orders {
-                if order.first_name == "Napoleon" && order.last_name == "Batz" {
-                    total_spent = order.total_spent!
-                }
-            }
-            
-            DispatchQueue.main.async {
-                if response {
-                    self.amountSpentLabel.text = "$" + total_spent
-                    self.bronzeBagAmountLabel.text = String(self.bronzeBagCount)
-                }
-            }
-        }
-        
-        grabImageData { (response) in
-            
-            if response {
-                DispatchQueue.global().async {
-                    let data = try? Data(contentsOf: URL(string: self.itemImageSource)!)
-                    DispatchQueue.main.async {
-                        self.bronzeBagImage.image = UIImage(data: data!)
-                    }
-                }
-            } else {
-                DispatchQueue.main.async {
-                    self.bronzeBagImage.image = UIImage(named: "Image_Not_Available")
-                }
-            }
-        }
-
+        reloadOverallData()
+       
         overlayVC.dismiss(animated: true, completion: nil)
         
         
@@ -81,7 +42,22 @@ class ViewController: UIViewController {
         
         bronzeBagImage.contentMode = .scaleAspectFit
         
-        reloadOrderData { (response) in
+        reloadOverallData()
+        
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    private func reloadOverallData() {
+        
+        reloadOrderData { (response, orderArray, items, error) in
+            
+            self.orders = orderArray
+            self.itemArray = items
+            
             self.bronzeBagCount = 0
             var total_spent: String = ""
             
@@ -93,7 +69,7 @@ class ViewController: UIViewController {
             
             for order in self.orders {
                 if order.first_name == "Napoleon" && order.last_name == "Batz" {
-                    total_spent = order.total_spent!
+                    total_spent = order.total_spent ?? "0"
                 }
             }
             
@@ -101,17 +77,35 @@ class ViewController: UIViewController {
                 if response {
                     self.amountSpentLabel.text = "$" + total_spent
                     self.bronzeBagAmountLabel.text = String(self.bronzeBagCount)
+                } else {
+                    let errorView = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+                    let okayButton = UIAlertAction(title: "Okay", style: .cancel, handler: { (_) in
+                        errorView.dismiss(animated: true, completion: nil)
+                    })
+                    errorView.addAction(okayButton)
+                    self.show(errorView, sender: self)
                 }
             }
         }
         
-        grabImageData { (response) in
+        grabImageURL { (response, data) in
             
             if response {
+                
+                self.itemImageSource = data
+                
                 DispatchQueue.global().async {
-                    let data = try? Data(contentsOf: URL(string: self.itemImageSource)!)
-                    DispatchQueue.main.async {
-                        self.bronzeBagImage.image = UIImage(data: data!)
+                    guard let itemImageSourceURL = URL(string: self.itemImageSource) else {
+                        DispatchQueue.main.async {
+                            self.bronzeBagImage.image = UIImage(named: "Image_Not_Available")
+                        }
+                        return
+                    }
+                    
+                    if let data = try? Data(contentsOf: itemImageSourceURL) {
+                        DispatchQueue.main.async {
+                            self.bronzeBagImage.image = UIImage(data: data)
+                        }
                     }
                 }
             } else {
@@ -120,31 +114,23 @@ class ViewController: UIViewController {
                 }
             }
         }
-        
+
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    private func reloadOrderData(completionHandler: @escaping ((_ response: Bool) -> Void)){
+    private func reloadOrderData(completionHandler: @escaping ((_ response: Bool, _ orders: [Order], _ items: [String], _ error: String) -> Void)){
         let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
             
+            var orderArray = [Order]()
+            var itemTitleArray = [String]()
             self.itemArray = []
             
             if error != nil {
-                let errorView = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                let okayButton = UIAlertAction(title: "Okay", style: .cancel, handler: { (_) in
-                    errorView.dismiss(animated: true, completion: nil)
-                })
-                errorView.addAction(okayButton)
-                self.show(errorView, sender: self)
-                completionHandler(false)
+                completionHandler(false, [], [], error?.localizedDescription ?? "")
+                return
             }
             
             if let data = data,
-                let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject]{
+                let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] {
                 if let result = json?["orders"] as? [[String: Any]] {
                     for output in result {
                         let order = Order()
@@ -152,48 +138,48 @@ class ViewController: UIViewController {
                             order.first_name = customer["first_name"] as? String
                             order.last_name = customer["last_name"] as? String
                             order.total_spent = customer["total_spent"] as? String
+                            orderArray.append(order)
                         }
                         
                         if let line_items = output["line_items"] as? [[String:Any]] {
                             for items in line_items {
                                 if let title = items["title"] as? String {
-                                    self.itemArray.append(title)
+                                    itemTitleArray.append(title)
                                 }
                             }
                         }
-                        
-                        completionHandler(true)
-                        
-                        self.orders.append(order)
+                        completionHandler(true, orderArray, itemTitleArray, "")
                     }
                 }
+            } else {
+                completionHandler(false, [], [], "Error parsing JSON file")
             }
         }
         task.resume()
     }
     
-    private func grabImageData(completionHandler: @escaping ((_ response: Bool) -> Void)) {
+    private func grabImageURL(completionHandler: @escaping ((_ response: Bool, _ data: String) -> Void)) {
         let task = URLSession.shared.dataTask(with: imageURL!) {(data, response, error) in
-            if error != nil {
-                let errorView = UIAlertController(title: "Error", message: "Cannot grab image data. \n \(String(describing: (error ?? "" as! Error).localizedDescription))", preferredStyle: .alert)
-                let okayButton = UIAlertAction(title: "Okay", style: .cancel, handler: { (_) in
-                    errorView.dismiss(animated: true, completion: nil)
-                })
-                errorView.addAction(okayButton)
-                self.show(errorView, sender: self)
-                completionHandler(false)
-            }
             
+            var imageSRC: String = ""
+
+            if error != nil {
+                completionHandler(false, "")
+            }
+
             if let data = data,
                 let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] {
                 if let images = json?["images"] as? [[String:Any]] {
                     for items in images {
                         if let imageSource = items["src"] as? String {
-                            self.itemImageSource = imageSource
-                            completionHandler(true)
+                            imageSRC = imageSource
                         }
                     }
+                    completionHandler(true, imageSRC)
+
                 }
+            } else {
+                completionHandler(false, "")
             }
         }
         task.resume()
