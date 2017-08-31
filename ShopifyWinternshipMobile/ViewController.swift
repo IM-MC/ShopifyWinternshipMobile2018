@@ -90,27 +90,21 @@ class ViewController: UIViewController {
         
         grabImageURL { (response, data) in
             
-            if response {
-                
-                self.itemImageSource = data
-                
-                DispatchQueue.global().async {
-                    guard let itemImageSourceURL = URL(string: self.itemImageSource) else {
-                        DispatchQueue.main.async {
-                            self.bronzeBagImage.image = UIImage(named: "Image_Not_Available")
-                        }
-                        return
-                    }
-                    
-                    if let data = try? Data(contentsOf: itemImageSourceURL) {
-                        DispatchQueue.main.async {
-                            self.bronzeBagImage.image = UIImage(data: data)
-                        }
-                    }
-                }
-            } else {
+            self.itemImageSource = data
+            guard let itemImageSourceURL = URL(string: self.itemImageSource) else {
                 DispatchQueue.main.async {
                     self.bronzeBagImage.image = UIImage(named: "Image_Not_Available")
+                }
+                return
+            }
+            
+            if let data = try? Data(contentsOf: itemImageSourceURL) {
+                DispatchQueue.main.async {
+                    if response {
+                        self.bronzeBagImage.image = UIImage(data: data)
+                    } else {
+                        self.bronzeBagImage.image = UIImage(named: "Image_Not_Available")
+                    }
                 }
             }
         }
