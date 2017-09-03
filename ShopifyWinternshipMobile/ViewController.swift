@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     
     let url = URL(string: "https://shopicruit.myshopify.com/admin/orders.json?page=1&access_token=c32313df0d0ef512ca64d5b336a0d7c6")
     let imageURL = URL(string: "https://shopicruit.myshopify.com/admin/products/2759139395/images.json?access_token=c32313df0d0ef512ca64d5b336a0d7c6")
+    let currencyExchangeFromUSD = URL(string: "https://openexchangerates.org/api/latest.json?app_id=7b9fcc02aab24739929a0f5e6e93e571")
     
     var orders: [Order] = []
     var itemArray: [String] = []
@@ -19,8 +20,7 @@ class ViewController: UIViewController {
     var bronzeBagCount = 0
     var itemImageSource: String = ""
     
-    // At the time of creation, $1 USD = $1.25 CAD
-    let USDtoCADConversionRate = 1.25
+    var USDtoCADConversionRate = 0.00
     
     let overlayVC = OverlayWithSpinner()
     
@@ -45,7 +45,16 @@ class ViewController: UIViewController {
         
         bronzeBagImage.contentMode = .scaleAspectFit
         
+        getCurrencyExchangeFromUSDtoCAD { (response, data) in
+            if response != true {
+                self.USDtoCADConversionRate = 1.24 //At time of creation the exchange rate is 1.24. This should only happen if reading the json fails
+            } else {
+                self.USDtoCADConversionRate = data
+            }
+        }
+        
         reloadOverallData()
+        
         
     }
     
@@ -172,7 +181,7 @@ class ViewController: UIViewController {
 
             if let data = data,
                 let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] {
-                if let images = json?["images"] as? [[String:Any]] {
+                if let images = json?["images"] as? [[String: Any]] {
                     for items in images {
                         if let imageSource = items["src"] as? String {
                             imageSRC = imageSource
@@ -183,6 +192,27 @@ class ViewController: UIViewController {
                 }
             } else {
                 completionHandler(false, "")
+            }
+        }
+        task.resume()
+    }
+    
+    func getCurrencyExchangeFromUSDtoCAD(completionHandler: @escaping ((_ response: Bool, _ data: Double) -> Void)) {
+        let task = URLSession.shared.dataTask(with: currencyExchangeFromUSD!) {(data, response, error) in
+            var USDtoCAD: Double = 0.00
+            
+            if error != nil {
+                completionHandler(false, 0.00)
+            }
+            
+            if let data = data,
+                let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] {
+                if let CADrate = json?["rates"]?["CAD"] as! Double? {
+                    USDtoCAD = CADrate
+                    completionHandler(true, USDtoCAD)
+                }
+            } else {
+                completionHandler(false, 0.00)
             }
         }
         task.resume()
