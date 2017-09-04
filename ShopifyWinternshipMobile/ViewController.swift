@@ -32,14 +32,12 @@ class ViewController: UIViewController {
         overlayVC.modalTransitionStyle = .crossDissolve
         overlayVC.modalPresentationStyle = .overCurrentContext
         present(overlayVC, animated: true, completion: nil)
-        
+
         reloadOverallData()
-       
+
         overlayVC.dismiss(animated: true, completion: nil)
-        
-        
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,17 +45,14 @@ class ViewController: UIViewController {
         
         getCurrencyExchangeFromUSDtoCAD { (response, data) in
             if response != true {
-                self.USDtoCADConversionRate = 1.24 //At time of creation the exchange rate is 1.24. This should only happen if reading the json fails
+                self.USDtoCADConversionRate = 1.24 //At time of creation the exchange rate is 1.24. This should only happen if reading the json fails, then we set it to this value
             } else {
                 self.USDtoCADConversionRate = data
             }
         }
-        
         reloadOverallData()
-        
-        
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -66,19 +61,19 @@ class ViewController: UIViewController {
     private func reloadOverallData() {
         
         reloadOrderData { (response, orderArray, items, error) in
-            
+
             self.orders = orderArray
             self.itemArray = items
-            
+
             self.bronzeBagCount = 0
             var total_spent: String = ""
-            
+
             for item in self.itemArray {
                 if item == "Awesome Bronze Bag" {
                     self.bronzeBagCount += 1
                 }
             }
-            
+
             for order in self.orders {
                 if order.first_name == "Napoleon" && order.last_name == "Batz" {
                     if let total_spent_double = Double(order.total_spent ?? "0") {
@@ -86,7 +81,7 @@ class ViewController: UIViewController {
                     }
                 }
             }
-            
+
             DispatchQueue.main.async {
                 if response {
                     self.amountSpentLabel.text = "$" + total_spent
@@ -101,9 +96,9 @@ class ViewController: UIViewController {
                 }
             }
         }
-        
+
         grabImageURL { (response, data) in
-            
+
             self.itemImageSource = data
             guard let itemImageSourceURL = URL(string: self.itemImageSource) else {
                 DispatchQueue.main.async {
@@ -111,7 +106,7 @@ class ViewController: UIViewController {
                 }
                 return
             }
-            
+
             if let data = try? Data(contentsOf: itemImageSourceURL) {
                 DispatchQueue.main.async {
                     if response {
@@ -126,21 +121,20 @@ class ViewController: UIViewController {
                 }
             }
         }
-
     }
-    
+
     private func reloadOrderData(completionHandler: @escaping ((_ response: Bool, _ orders: [Order], _ items: [String], _ error: String) -> Void)){
         let task = URLSession.shared.dataTask(with: url!) {(data, response, error) in
-            
+
             var orderArray = [Order]()
             var itemTitleArray = [String]()
             self.itemArray = []
-            
+
             if error != nil {
                 completionHandler(false, [], [], error?.localizedDescription ?? "")
                 return
             }
-            
+
             if let data = data,
                 let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] {
                 if let result = json?["orders"] as? [[String: Any]] {
@@ -152,7 +146,7 @@ class ViewController: UIViewController {
                             order.total_spent = customer["total_spent"] as? String
                             orderArray.append(order)
                         }
-                        
+
                         if let line_items = output["line_items"] as? [[String:Any]] {
                             for items in line_items {
                                 if let title = items["title"] as? String {
@@ -169,10 +163,10 @@ class ViewController: UIViewController {
         }
         task.resume()
     }
-    
+
     private func grabImageURL(completionHandler: @escaping ((_ response: Bool, _ data: String) -> Void)) {
         let task = URLSession.shared.dataTask(with: imageURL!) {(data, response, error) in
-            
+
             var imageSRC: String = ""
 
             if error != nil {
@@ -196,15 +190,15 @@ class ViewController: UIViewController {
         }
         task.resume()
     }
-    
+
     func getCurrencyExchangeFromUSDtoCAD(completionHandler: @escaping ((_ response: Bool, _ data: Double) -> Void)) {
         let task = URLSession.shared.dataTask(with: currencyExchangeFromUSD!) {(data, response, error) in
             var USDtoCAD: Double = 0.00
-            
+
             if error != nil {
                 completionHandler(false, 0.00)
             }
-            
+
             if let data = data,
                 let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] {
                 if let CADrate = json?["rates"]?["CAD"] as! Double? {
@@ -217,5 +211,4 @@ class ViewController: UIViewController {
         }
         task.resume()
     }
-    
 }
