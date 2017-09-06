@@ -57,9 +57,9 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     private func reloadOverallData() {
-        
+
         reloadOrderData { (response, orderArray, items, error) in
 
             self.orders = orderArray
